@@ -15,5 +15,15 @@ namespace TestNinja.Fundamentals
             return (a > b) ? a : b;
         }
 
+        public IEnumerable<int> GetOddNumbers(int limit)
+        {
+            for (int i = 0; i <= limit; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    yield return i;
+                } 
+            }
+        }
     }
 }
