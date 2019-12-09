@@ -26,26 +26,39 @@ namespace TestNinja.UnitTests
             Assert.That(result, Is.EqualTo(3));
         }
 
-        [Test]
-        public void Max_FirstIsGreater_ReturnsFirst()
-        {
-            var result = _math.Max(2, 1);
+        //[Test]
+        //public void Max_FirstIsGreater_ReturnsFirst()
+        //{
+        //    var result = _math.Max(2, 1);
 
-            Assert.That(result, Is.EqualTo(2));
-        }
-        [Test]
-        public void Max_SecondIsGreater_ReturnsSecond()
-        {
-            var result = _math.Max(1, 3);
+        //    Assert.That(result, Is.EqualTo(2));
+        //}
+        //[Test]
+        //public void Max_SecondIsGreater_ReturnsSecond()
+        //{
+        //    var result = _math.Max(1, 3);
 
-            Assert.That(result, Is.EqualTo(3));
-        }
-        [Test]
-        public void Max_ArgumentsAreEqual_ReturnsSameArgument()
-        {
-            var result = _math.Max(3, 3);
+        //    Assert.That(result, Is.EqualTo(3));
+        //}
+        //[Test]
+        //public void Max_ArgumentsAreEqual_ReturnsSameArgument()
+        //{
+        //    var result = _math.Max(3, 3);
 
-            Assert.That(result, Is.EqualTo(3));
+        //    Assert.That(result, Is.EqualTo(3));
+        //}
+
+        //Instead of the 3 above tests we use
+        //Parameterized tests
+        [Test]
+        [TestCase(2, 1, 2)]
+        [TestCase(1, 2, 2)]
+        [TestCase(1, 1, 1)]
+        public void Max_WhenCalled_ReturnsGreater(int a,int b,int expectedResult)
+        {
+            var result = _math.Max(a, b);
+
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
     }
 }
