@@ -13,7 +13,6 @@ namespace TestNinja.Fundamentals
 
             //Refactoring and check with tests if we broke anything
             return (user.IsAdmin || MadeBy == user);
-
         }
     }
 }

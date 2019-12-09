@@ -1,15 +1,53 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
-    [TestClass]
+    //[TestClass]
+    [TestFixture]
     public class ReservationTests
     {
-        [TestMethod]
+        //[TestMethod]
+        //public void CanBeCancelled_UserIsAdmin_ReturnsTrue()
+        //{
+        //    User user = new User() { IsAdmin = true};
+        //    Reservation reservation = new Reservation();
+
+        //    var result = reservation.CanBeCancelled(user);
+
+        //    Assert.IsTrue(result);
+        //}
+
+        //[TestMethod]
+        //public void CanBeCancelled_UserIsCreator_ReturnsTrue()
+        //{
+        //    User user = new User();           
+        //    Reservation reservation = new Reservation();
+        //    reservation.MadeBy = user;
+
+        //    var result = reservation.CanBeCancelled(user);
+
+        //    Assert.IsTrue(result);
+        //}
+
+        //[TestMethod]
+        //public void CanBeCancelled_UserIsDifferent_ReturnsFalse()
+        //{
+        //    User user = new User();
+        //    Reservation reservation = new Reservation();
+
+        //    var result = reservation.CanBeCancelled(user);
+
+        //    Assert.IsFalse(result);
+        //}
+
+        //Refactoring for running NUnit Tests
+
+        [Test]
         public void CanBeCancelled_UserIsAdmin_ReturnsTrue()
         {
-            User user = new User() { IsAdmin = true};
+            User user = new User() { IsAdmin = true };
             Reservation reservation = new Reservation();
 
             var result = reservation.CanBeCancelled(user);
@@ -17,19 +55,20 @@ namespace TestNinja.UnitTests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void CanBeCancelled_UserIsCreator_ReturnsTrue()
         {
-            User user = new User();           
+            User user = new User();
             Reservation reservation = new Reservation();
             reservation.MadeBy = user;
 
             var result = reservation.CanBeCancelled(user);
 
-            Assert.IsTrue(result);
+            //Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
-        [TestMethod]
+        [Test]
         public void CanBeCancelled_UserIsDifferent_ReturnsFalse()
         {
             User user = new User();
