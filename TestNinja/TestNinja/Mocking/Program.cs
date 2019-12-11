@@ -11,8 +11,10 @@ namespace TestNinja.Mocking
             var service = new VideoService();
 
             //Dependency injection via method parameters
-            var title = service.ReadVideoTitle(new FileReader());
+            //var title = service.ReadVideoTitle(new FileReader());
 
+            //Dependency injection via properties
+            var title = service.ReadVideoTitle();
         }
     }
 }
