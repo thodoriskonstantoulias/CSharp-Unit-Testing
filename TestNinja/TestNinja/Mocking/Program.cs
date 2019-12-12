@@ -17,7 +17,7 @@ namespace TestNinja.Mocking
             //var title = service.ReadVideoTitle();
 
             //Dependency injection via constructor
-            var service = new VideoService(new FileReader());
+            var service = new VideoService(new FileReader(),new VideoRepository());
             var title = service.ReadVideoTitle();
         }
     }
