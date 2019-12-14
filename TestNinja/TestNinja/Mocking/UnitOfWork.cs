@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace TestNinja.Mocking
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork()
         {
         }
 
-        public IQueryable<Booking> Query<T>()
+        public IQueryable<T> Query<T>()
         {
-            return new List<Booking>().AsQueryable();
+            return new List<T>().AsQueryable();
         }
     }
 }
