@@ -58,5 +58,35 @@ namespace TestNinja.UnitTests.Mocking
 
             statementGenerator.Verify(s => s.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate), Times.Never);
         }
+
+        [Test]
+        public void SendStatementEmails_WhenCalled_SendMail()
+        {
+            statementGenerator.Setup(s => s.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate)).Returns("filename");
+
+            service.SendStatementEmails(statementDate);
+
+            emailSender.Verify(es => es.EmailFile(housekeeper.Email, housekeeper.StatementEmailBody, "filename", It.IsAny<string>()));
+        }
+        [Test]
+        public void SendStatementEmails_Statement_NotSendMail()
+        {
+            statementGenerator.Setup(s => s.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate)).Returns(()=>null);
+
+            service.SendStatementEmails(statementDate);
+
+            emailSender.Verify(es => es.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()),Times.Never);
+        }
+
+        [Test]
+        public void SendStatementEmails_EmailSendFails_DisplayMessageBox()
+        {
+            statementGenerator.Setup(s => s.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate)).Returns("filename");
+            emailSender.Setup(es => es.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Throws<Exception>();
+
+            service.SendStatementEmails(statementDate);
+
+            messageBox.Verify(mb => mb.Show(It.IsAny<string>(), It.IsAny<string>()));
+        }
     }
 }

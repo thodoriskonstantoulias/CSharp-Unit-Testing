@@ -8,7 +8,7 @@ namespace TestNinja.Mocking
     {
         public void EmailFile(object emailAddress, object emailBody, string statementFileName, string v)
         {
-            return;
+            
         }
     }
 }
