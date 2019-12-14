@@ -23,7 +23,7 @@ namespace TestNinja.Mocking
             var housekeepers = _unitOfWork.Query<Housekeeper>();
             foreach (var housekeeper in housekeepers)
             {
-                if (housekeeper.Email == null) continue;
+                if (string.IsNullOrWhiteSpace(housekeeper.Email)) continue;
 
                 var statementFileName = _statementGenerator.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
                 if (string.IsNullOrWhiteSpace(statementFileName)) continue;
